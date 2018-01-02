@@ -1,0 +1,7 @@
+Code included is for the Concept Profiling Framework and Enhanced Concept Profiling Framework.
+
+To use:
+1) Install MOA and include this code in the moa.classifiers source folder
+2) Initialise CPF.java or ECPF.java as you would any classifier for MOA with code included in the correct folders
+
+For any use apart from considering alongside papers for publication, please request permission from the author by emailing rand079@aucklanduni.ac.nz
