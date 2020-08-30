@@ -23,19 +23,21 @@ package moa.classifiers.meta;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
-import sizeof.agent.SizeOfAgent;
 import com.github.javacliparser.IntOption;
 import com.yahoo.labs.samoa.instances.Instance;
 import com.yahoo.labs.samoa.instances.Instances;
+import moa.capabilities.CapabilitiesHandler;
+import moa.capabilities.Capability;
+import moa.capabilities.ImmutableCapabilities;
 import moa.classifiers.Classifier;
+import moa.classifiers.MultiClassClassifier;
 import moa.classifiers.core.driftdetection.ChangeDetector;
 import moa.core.Utils;
-import moa.options.FlagOption;
 
-public class CPF extends AbstractCPF {
+public class CPF extends AbstractCPF implements MultiClassClassifier, CapabilitiesHandler {
 
 	private static final long serialVersionUID = 1L;
-    
+
     public IntOption bufferSizeOption = new IntOption(
             "bufferSize",
             'b',
@@ -337,5 +339,13 @@ public class CPF extends AbstractCPF {
 			if(this.classifierCollection.get(i) != null)
 				num++;
 		return num;
+	}
+
+	@Override
+	public ImmutableCapabilities defineImmutableCapabilities() {
+		if (this.getClass() == CPF.class)
+			return new ImmutableCapabilities(Capability.VIEW_STANDARD, Capability.VIEW_LITE);
+		else
+			return new ImmutableCapabilities(Capability.VIEW_STANDARD);
 	}
 }

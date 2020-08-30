@@ -25,11 +25,15 @@ import java.util.HashMap;
 import com.github.javacliparser.IntOption;
 import com.yahoo.labs.samoa.instances.Instance;
 import com.yahoo.labs.samoa.instances.Instances;
+import moa.capabilities.CapabilitiesHandler;
+import moa.capabilities.Capability;
+import moa.capabilities.ImmutableCapabilities;
 import moa.classifiers.Classifier;
+import moa.classifiers.MultiClassClassifier;
 import moa.classifiers.core.driftdetection.ChangeDetector;
 import moa.core.Utils;
 
-public class ECPF extends AbstractCPF{
+public class ECPF extends AbstractCPF implements MultiClassClassifier, CapabilitiesHandler {
 
 	private static final long serialVersionUID = 1L;
 
@@ -381,5 +385,12 @@ public class ECPF extends AbstractCPF{
 	public void clearBuffer(){
 		this.buffer = null;
 	}
-	
+
+	@Override
+	public ImmutableCapabilities defineImmutableCapabilities() {
+		if (this.getClass() == ECPF.class)
+			return new ImmutableCapabilities(Capability.VIEW_STANDARD, Capability.VIEW_LITE);
+		else
+			return new ImmutableCapabilities(Capability.VIEW_STANDARD);
+	}
 }

@@ -24,8 +24,8 @@ import com.yahoo.labs.samoa.instances.Instance;
 
 import moa.classifiers.drift.DriftDetectionMethodClassifierExt;
 import moa.core.Measurement;
-import moa.options.FlagOption;
-import moa.options.FloatOption;
+import com.github.javacliparser.FlagOption;
+import com.github.javacliparser.FloatOption;
 
 public class AbstractCPF extends DriftDetectionMethodClassifierExt {
 
